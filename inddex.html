@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Faiz ❤️ Varsha</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:Poppins,sans-serif;
+background:linear-gradient(135deg,#ffc0cb,#ffe8d6,#fbe7c6);
+color:#fff;
+overflow-x:hidden;
+text-align:center;
+}
+
+h1{font-family:"Great Vibes",cursive;font-size:46px;}
+
+.card{
+background:rgba(255,255,255,0.25);
+backdrop-filter:blur(10px);
+border-radius:18px;
+padding:18px;
+margin:18px auto;
+max-width:820px;
+}
+
+button{
+padding:12px 22px;
+border:none;
+border-radius:25px;
+background:white;
+color:#d6336c;
+font-weight:600;
+cursor:pointer;
+margin-top:12px;
+}
+
+/* lock */
+#lock{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+/* steps */
+.step{display:none;padding:20px;}
+
+/* gallery */
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:16px;
+}
+
+.photo{
+border-radius:14px;
+overflow:hidden;
+cursor:pointer;
+background:white;
+}
+
+.photo img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+/* popup */
+#popup{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.6);
+display:none;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.popup-box{
+background:white;
+color:#333;
+padding:20px;
+border-radius:16px;
+max-width:420px;
+}
+
+/* hearts */
+.heart{
+position:fixed;
+top:-10px;
+animation:fall linear forwards;
+}
+@keyframes fall{
+to{transform:translateY(110vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+<source src="Rang-Jo-Lagyo-Atif-Aslam-Hindi-1.mp3">
+</audio>
+
+<!-- LOCK -->
+<div id="lock">
+<h1>Coffee Love Door ☕💌</h1>
+<p>Password dalo Faiz ji 😌</p>
+<input type="password" id="pw">
+<button onclick="unlock()">Unlock</button>
+<p id="err"></p>
+</div>
+
+<!-- MAIN -->
+<div id="main" style="display:none;">
+
+<!-- STEP 1 -->
+<div class="step" id="s1">
+<h1>Faiz ❤️ Varsha</h1>
+<div class="card">
+Yeh page simple nahi hai —  
+yeh ek cute sa coffee-flavoured love corner hai  
+sirf ham dono ke liye ☕💞
+</div>
+<button onclick="next(2)">Next Surprise</button>
+</div>
+
+<!-- STEP 2 — MY ROMANTIC MESSAGE -->
+<div class="step" id="s2">
+<h1>Little Note For You 💌</h1>
+<div class="card">
+Some people feel like a message,  
+some feel like a memory —  
+but you feel like comfort.  
+
+Tum wo ho jinke saath silence bhi conversation lagta hai,  
+aur coffee bhi extra sweet ho jaati hai.  
+
+Agar din thoda heavy ho — tum light ho.  
+Agar mood off ho — tum smile ho.  
+Aur agar pyaar ka koi simple definition ho —  
+toh shayad tum ho. ☕❤️
+</div>
+<button onclick="next(3)">Our Memories 📸</button>
+</div>
+
+<!-- STEP 3 — GALLERY -->
+<div class="step" id="s3">
+<h1>Our Photo Stories 📸</h1>
+
+<div class="gallery">
+
+<div class="photo" onclick="story('Yaha apni story likhna — memory 1')">
+<img src="photo1.jpg">
+</div>
+
+<div class="photo" onclick="story('Yaha apni story likhna — memory 2')">
+<img src="photo2.jpg">
+</div>
+
+<div class="photo" onclick="story('Yaha apni story likhna — memory 3')">
+<img src="photo3.jpg">
+</div>
+
+<div class="photo" onclick="story('Yaha apni story likhna — memory 4')">
+<img src="photo4.jpg">
+</div>
+
+<div class="photo" onclick="story('Yaha apni story likhna — memory 5')">
+<img src="photo5.jpg">
+</div>
+
+<div class="photo" onclick="story('Yaha apni story likhna — memory 6')">
+<img src="photo6.jpg">
+</div>
+
+</div>
+
+<button onclick="next(4)">Romantic Q&A 💬</button>
+</div>
+
+<!-- STEP 4 — QNA -->
+<div class="step" id="s4">
+<h1>Cute Q&A 💘</h1>
+<div class="card" id="qbox">Ready?</div>
+<button onclick="nextQ()">Next</button>
+</div>
+
+<!-- STEP 5 — FINAL -->
+<div class="step" id="s5">
+<h1>Final Line ❤️</h1>
+<div class="card">
+Coffee dates ho ya random talks —  
+bas partner same rehna chahiye.  
+
+Mera favourite combo:  
+You + Me + Coffee + Forever ☕💞
+</div>
+</div>
+
+</div>
+
+<!-- POPUP -->
+<div id="popup" onclick="popup.style.display='none'">
+<div class="popup-box" id="popupText"></div>
+</div>
+
+<script>
+const qs=[
+"Who is my favorite person? — Faiz ❤️",
+"Best coffee partner? — Faiz ☕",
+"Permanent trouble + permanent smile? — Faiz 😌"
+];
+
+let qi=0;
+
+function unlock(){
+if(pw.value.toLowerCase()==="coffee"){
+lock.style.display="none";
+main.style.display="block";
+music.play();
+next(1);
+hearts();
+}else err.innerText="Wrong password 💔";
+}
+
+function next(n){
+document.querySelectorAll(".step").forEach(s=>s.style.display="none");
+document.getElementById("s"+n).style.display="block";
+}
+
+function story(t){
+popup.style.display="flex";
+popupText.innerText=t;
+}
+
+function nextQ(){
+if(qi<qs.length){
+qbox.innerText=qs[qi++];
+}else next(5);
+}
+
+function hearts(){
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤";
+h.style.left=Math.random()*100+"vw";
+h.style.fontSize=(14+Math.random()*12)+"px";
+h.style.animationDuration=(3+Math.random()*3)+"s";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+},300);
+}
+</script>
+
+</body>
+</html>
