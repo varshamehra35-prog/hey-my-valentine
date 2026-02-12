@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Faiz ❤️ Varsha</title>
+<title>Brewed With Love For You ☕❤️</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
 
@@ -12,8 +12,8 @@ margin:0;
 font-family:Poppins,sans-serif;
 background:linear-gradient(135deg,#ffc0cb,#ffe8d6,#fbe7c6);
 color:#fff;
-overflow-x:hidden;
 text-align:center;
+overflow-x:hidden;
 }
 
 h1{font-family:"Great Vibes",cursive;font-size:46px;}
@@ -38,13 +38,10 @@ cursor:pointer;
 margin-top:12px;
 }
 
-/* lock */
-#lock{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
+input{
+padding:12px;
+border-radius:25px;
+border:none;
 }
 
 /* steps */
@@ -56,48 +53,33 @@ display:grid;
 grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:16px;
 }
-
-.photo{
-border-radius:14px;
-overflow:hidden;
-cursor:pointer;
-background:white;
-}
-
-.photo img{
-width:100%;
-height:220px;
-object-fit:cover;
-}
+.photo{border-radius:14px;overflow:hidden;cursor:pointer;background:white;}
+.photo img{width:100%;height:220px;object-fit:cover;}
 
 /* popup */
 #popup{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,0.6);
-display:none;
-justify-content:center;
-align-items:center;
-padding:20px;
+position:fixed;inset:0;background:rgba(0,0,0,.6);
+display:none;justify-content:center;align-items:center;
 }
-
 .popup-box{
-background:white;
-color:#333;
-padding:20px;
-border-radius:16px;
-max-width:420px;
+background:white;color:#333;padding:20px;border-radius:16px;max-width:420px;
 }
 
 /* hearts */
-.heart{
-position:fixed;
-top:-10px;
-animation:fall linear forwards;
-}
-@keyframes fall{
-to{transform:translateY(110vh);opacity:0;}
-}
+.heart{position:fixed;top:-10px;animation:fall linear forwards;}
+@keyframes fall{to{transform:translateY(110vh);opacity:0;}}
+
+/* confetti */
+.confetti{position:fixed;width:8px;height:8px;top:-10px;animation:confall linear forwards;}
+@keyframes confall{to{transform:translateY(110vh) rotate(720deg);opacity:0;}}
+
+/* flash */
+.flash{position:fixed;inset:0;background:white;opacity:0;animation:flashAnim .6s;}
+@keyframes flashAnim{0%{opacity:.9;}100%{opacity:0;}}
+
+/* sparkle */
+.spark{position:fixed;animation:sparkUp 1s forwards;}
+@keyframes sparkUp{to{transform:translateY(-40px);opacity:0;}}
 </style>
 </head>
 
@@ -107,11 +89,11 @@ to{transform:translateY(110vh);opacity:0;}
 <source src="Rang-Jo-Lagyo-Atif-Aslam-Hindi-1.mp3">
 </audio>
 
-<!-- LOCK -->
-<div id="lock">
-<h1>Coffee Love Door ☕💌</h1>
-<p>Password dalo Faiz ji 😌</p>
-<input type="password" id="pw">
+<!-- LOCK SCREEN -->
+<div id="lock" style="height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;">
+<h1>Brewed With Love For You ☕❤️</h1>
+<p>Password dalo Gentleman 😌</p>
+<input type="password" id="pw" placeholder="Type with love">
 <button onclick="unlock()">Unlock</button>
 <p id="err"></p>
 </div>
@@ -119,20 +101,17 @@ to{transform:translateY(110vh);opacity:0;}
 <!-- MAIN -->
 <div id="main" style="display:none;">
 
-<!-- STEP 1 -->
 <div class="step" id="s1">
-<h1>Faiz ❤️ Varsha</h1>
+<h1>Brewed With Love For You ☕❤️</h1>
 <div class="card">
-Yeh page simple nahi hai —  
-yeh ek cute sa coffee-flavoured love corner hai  
-sirf ham dono ke liye ☕💞
+Yeh cute sa coffee-flavoured love corner  
+sirf mere Gentleman ke liye ☕💞
 </div>
-<button onclick="next(2)">Next Surprise</button>
+<button onclick="next(2)">Next</button>
 </div>
 
-<!-- STEP 2 — MY ROMANTIC MESSAGE -->
 <div class="step" id="s2">
-<h1>Little Note For You 💌</h1>
+<h1>Little Note 💌</h1>
 <div class="card">
 Some people feel like a message,  
 some feel like a memory —  
@@ -141,65 +120,34 @@ but you feel like comfort.
 Tum wo ho jinke saath silence bhi conversation lagta hai,  
 aur coffee bhi extra sweet ho jaati hai.  
 
-Agar din thoda heavy ho — tum light ho.  
-Agar mood off ho — tum smile ho.  
-Aur agar pyaar ka koi simple definition ho —  
-toh shayad tum ho. ☕❤️
+If love had a simple name —  
+it would be you, my Gentleman ☕❤️
 </div>
-<button onclick="next(3)">Our Memories 📸</button>
+<button onclick="next(3)">Memories 📸</button>
 </div>
 
-<!-- STEP 3 — GALLERY -->
 <div class="step" id="s3">
 <h1>Our Photo Stories 📸</h1>
-
 <div class="gallery">
-
-<div class="photo" onclick="story('Yaha apni story likhna — memory 1')">
-<img src="photo1.jpg">
+<div class="photo" onclick="story('Yaha apni story likhna — memory 1')"><img src="photo1.jpg"></div>
+<div class="photo" onclick="story('Yaha apni story likhna — memory 2')"><img src="photo2.jpg"></div>
+<div class="photo" onclick="story('Yaha apni story likhna — memory 3')"><img src="photo3.jpg"></div>
+<div class="photo" onclick="story('Yaha apni story likhna — memory 4')"><img src="photo4.jpg"></div>
+</div>
+<button onclick="next(4)">Romantic Q&A 💘</button>
 </div>
 
-<div class="photo" onclick="story('Yaha apni story likhna — memory 2')">
-<img src="photo2.jpg">
-</div>
-
-<div class="photo" onclick="story('Yaha apni story likhna — memory 3')">
-<img src="photo3.jpg">
-</div>
-
-<div class="photo" onclick="story('Yaha apni story likhna — memory 4')">
-<img src="photo4.jpg">
-</div>
-
-<div class="photo" onclick="story('Yaha apni story likhna — memory 5')">
-<img src="photo5.jpg">
-</div>
-
-<div class="photo" onclick="story('Yaha apni story likhna — memory 6')">
-<img src="photo6.jpg">
-</div>
-
-</div>
-
-<button onclick="next(4)">Romantic Q&A 💬</button>
-</div>
-
-<!-- STEP 4 — QNA -->
 <div class="step" id="s4">
-<h1>Cute Q&A 💘</h1>
+<h1>Cute Q&A</h1>
 <div class="card" id="qbox">Ready?</div>
 <button onclick="nextQ()">Next</button>
 </div>
 
-<!-- STEP 5 — FINAL -->
 <div class="step" id="s5">
 <h1>Final Line ❤️</h1>
 <div class="card">
-Coffee dates ho ya random talks —  
-bas partner same rehna chahiye.  
-
-Mera favourite combo:  
-You + Me + Coffee + Forever ☕💞
+My favorite combo forever:  
+Gentleman + Me + Coffee + Love ☕💞
 </div>
 </div>
 
@@ -211,52 +159,111 @@ You + Me + Coffee + Forever ☕💞
 </div>
 
 <script>
-const qs=[
-"Who is my favorite person? — Faiz ❤️",
-"Best coffee partner? — Faiz ☕",
-"Permanent trouble + permanent smile? — Faiz 😌"
+/* PASSWORD SYSTEM */
+const correctPassword="i coffee you";
+const flirty=[
+"Wrong… but still cute 😌",
+"Password nahi, dil sahi lagao ☕",
+"Galat code, sahi Gentleman 💞",
+"Try again coffee partner 😉",
+"Close… add more pyaar",
+"Aise nahi khulega heart 😄",
+"Romantic try karo",
+"Almost… thoda aur"
 ];
-
-let qi=0;
+let attempts=0;
 
 function unlock(){
-if(pw.value.toLowerCase()==="coffee"){
+let val=pw.value.trim().toLowerCase();
+if(val===correctPassword){
 lock.style.display="none";
 main.style.display="block";
 music.play();
-next(1);
+flash();
+confettiBurst();
 hearts();
-}else err.innerText="Wrong password 💔";
+next(1);
+return;
+}
+attempts++;
+err.innerText = attempts<=flirty.length ? flirty[attempts-1]
+: "Hint 💡 It sounds like I Love You but coffee version ☕";
 }
 
+/* STEPS */
 function next(n){
 document.querySelectorAll(".step").forEach(s=>s.style.display="none");
 document.getElementById("s"+n).style.display="block";
 }
 
+/* QNA */
+const qs=[
+"Best coffee partner? — Gentleman ☕",
+"Favorite person? — Gentleman ❤️",
+"Permanent smile reason? — Gentleman 😌"
+];
+let qi=0;
+function nextQ(){
+if(qi<qs.length) qbox.innerText=qs[qi++];
+else next(5);
+}
+
+/* STORY POPUP */
 function story(t){
 popup.style.display="flex";
 popupText.innerText=t;
 }
 
-function nextQ(){
-if(qi<qs.length){
-qbox.innerText=qs[qi++];
-}else next(5);
-}
-
+/* HEART SHOWER */
 function hearts(){
+if(window.hr)return; window.hr=true;
 setInterval(()=>{
 let h=document.createElement("div");
 h.className="heart";
 h.innerHTML="❤";
 h.style.left=Math.random()*100+"vw";
-h.style.fontSize=(14+Math.random()*12)+"px";
+h.style.fontSize=(14+Math.random()*18)+"px";
 h.style.animationDuration=(3+Math.random()*3)+"s";
 document.body.appendChild(h);
 setTimeout(()=>h.remove(),6000);
-},300);
+},220);
 }
+
+/* CONFETTI */
+function confettiBurst(){
+for(let i=0;i<120;i++){
+let c=document.createElement("div");
+c.className="confetti";
+c.style.left=Math.random()*100+"vw";
+c.style.background=`hsl(${Math.random()*360},80%,60%)`;
+c.style.animationDuration=(3+Math.random()*2)+"s";
+document.body.appendChild(c);
+setTimeout(()=>c.remove(),5000);
+}
+}
+
+/* FLASH */
+function flash(){
+let f=document.createElement("div");
+f.className="flash";
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),600);
+}
+
+/* BUTTON SPARKLE */
+document.addEventListener("click",e=>{
+if(e.target.tagName==="BUTTON"){
+for(let i=0;i<6;i++){
+let s=document.createElement("div");
+s.className="spark";
+s.innerHTML="💖";
+s.style.left=e.clientX+"px";
+s.style.top=e.clientY+"px";
+document.body.appendChild(s);
+setTimeout(()=>s.remove(),1000);
+}
+}
+});
 </script>
 
 </body>
